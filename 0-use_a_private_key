@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This scripts is using ssh command to authenticate private key and connect to the server having ubuntu as the user
+ssh -i ~/.ssh/school ubuntu@3.87.98.29 
