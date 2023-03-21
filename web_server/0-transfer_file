@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+./0-transfer_file web_server 54.209.164.133 ubuntu ssh-copy-id -i ~/.ssh/mykey user@host
