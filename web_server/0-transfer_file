@@ -1,3 +1,10 @@
 #!/usr/bin/env bash
 #bash script for transfering file to server
-./0-transfer_file web_server 54.209.164.133 ubuntu ssh-copy-id -i ~/.ssh/mykey user@host
+
+if [ "$4" == "" ]
+then 
+    echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+else
+    host="$3@$2:~/"
+    scp -o StrictHostKeyChecking=no -i $4 $1 $host
+fi
