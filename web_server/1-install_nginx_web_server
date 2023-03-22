@@ -1,1 +1,3 @@
 #!/usr/bin/env bash
+#bash script for i stalling nginx
+curl -sI 54.209.164.133rl 
