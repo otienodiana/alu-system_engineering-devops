@@ -1,18 +1,13 @@
-frontend www-http
-    bind *:80
-    mode http
-    default_backend web-backend
-frontend www-https
-    bind *:443 ssl crt /etc/haproxy/dianaotieno.tech.pem
-    http-request set-header X-Forwarded-Proto https
-    acl letsencrypt-acl path_beg /.well-known/acme-challenge/
-    use_backend letsencrypt-backend if letsencrypt-acl
-    default_backend web-backend
+#!/usr/bin/env bash
+# bash script that  installs the 'ufw' firewall and,
+# setup a few rules on 'web-01'
 
-backend web-backend
-    redirect scheme https unless { ssl_fc }
-    balance roundrobin
-    server 5453-web-01 54.167.20.80:80 check
-    server 5453-web-02 3.93.164.216:80 check
-backend letsencrypt-backend
-   server letsencrypt 127.0.0.1:54321
+apt-get install ufw
+sed -i 's/IPV6=.*/IPV6=yes/' /etc/default/ufw
+ufw disable
+ufw enable
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow 22/tcp
+ufw allow 443/tcp
+ufw allow 80/tcp
